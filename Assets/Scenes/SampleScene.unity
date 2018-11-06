@@ -378,7 +378,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &787079247
 Prefab:
@@ -449,7 +449,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4060415130731760, guid: c0bc90088b38e83418306b2571c20b1d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 18.75
+      value: 18.48
       objectReference: {fileID: 0}
     - target: {fileID: 4060415130731760, guid: c0bc90088b38e83418306b2571c20b1d, type: 2}
       propertyPath: m_LocalPosition.y
@@ -477,13 +477,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4060415130731760, guid: c0bc90088b38e83418306b2571c20b1d, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 114538183577505928, guid: c0bc90088b38e83418306b2571c20b1d,
         type: 2}
       propertyPath: enemyDestination
       value: 
       objectReference: {fileID: 709874162}
+    - target: {fileID: 1002151509750554, guid: c0bc90088b38e83418306b2571c20b1d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0bc90088b38e83418306b2571c20b1d, type: 2}
   m_IsPrefabAsset: 0
@@ -515,7 +519,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1121771018
 MeshFilter:
@@ -568,7 +572,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4502467933694828, guid: bd92086232848084ab0e561015ce31ab, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 18.75
+      value: 18.48
       objectReference: {fileID: 0}
     - target: {fileID: 4502467933694828, guid: bd92086232848084ab0e561015ce31ab, type: 2}
       propertyPath: m_LocalPosition.y
@@ -603,6 +607,10 @@ Prefab:
       propertyPath: enemyDestination
       value: 
       objectReference: {fileID: 709874162}
+    - target: {fileID: 1218266988782456, guid: bd92086232848084ab0e561015ce31ab, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd92086232848084ab0e561015ce31ab, type: 2}
   m_IsPrefabAsset: 0
@@ -819,13 +827,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stages:
-  - enemy1Count: 3
-    enemy2Count: 2
-    enemies:
+  - enemies:
     - Prefab: {fileID: 1002151509750554, guid: c0bc90088b38e83418306b2571c20b1d, type: 2}
-      Count: 3
+      Count: 2
     - Prefab: {fileID: 1218266988782456, guid: bd92086232848084ab0e561015ce31ab, type: 2}
       Count: 2
+    - Prefab: {fileID: 1002151509750554, guid: c0bc90088b38e83418306b2571c20b1d, type: 2}
+      Count: 2
+    - Prefab: {fileID: 1218266988782456, guid: bd92086232848084ab0e561015ce31ab, type: 2}
+      Count: 2
+  currentState: 0
 --- !u!4 &1839362041
 Transform:
   m_ObjectHideFlags: 0
@@ -837,7 +848,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1897315281
 GameObject:
