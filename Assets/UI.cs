@@ -9,7 +9,7 @@ public class UI : MonoBehaviour {
     public Text tex;
     private float num;
     void Update() {
-        if (GameManagerScript.Instance.GetRotate() == true)
+        if (GameManager.Instance.GetRotate() == true)
         {
             tex.text = "90";
         }

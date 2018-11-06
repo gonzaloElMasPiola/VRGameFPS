@@ -10,8 +10,8 @@ public class Wall : MonoBehaviour {
 	void Start () {
         m_Collider = GetComponent<Collider>();
         m_Size = m_Collider.bounds.size;
-        aux = GameManagerScript.Instance.GetWall();
-        GameManagerScript.Instance.SetWallY(m_Size.y/2);
+        aux = GameManager.Instance.GetWall();
+        GameManager.Instance.SetWallY(m_Size.y/2);
         transform.localScale = new Vector3(aux, transform.localScale.y , aux/2);
         Debug.Log(m_Size);
     }

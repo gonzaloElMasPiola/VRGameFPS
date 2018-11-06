@@ -25,26 +25,26 @@ public class testeoRay : MonoBehaviour {
         {
             if (hit.collider.gameObject == Cube2)
             {
-                GameManagerScript.Instance.GetPlanePosition(hit.point);
-                GameManagerScript.Instance.SetPlaneOn(true);
+                GameManager.Instance.GetPlanePosition(hit.point);
+                GameManager.Instance.SetPlaneOn(true);
                 // Debug.Log(hit.point);
             }
             else
             {
-                GameManagerScript.Instance.SetPlaneOn(false);
+                GameManager.Instance.SetPlaneOn(false);
             }
         }
         else
         {
-            GameManagerScript.Instance.SetPlaneOn(false);
+            GameManager.Instance.SetPlaneOn(false);
         }
         if(build)
         {
-            GameManagerScript.Instance.SetBuildOn(true);
+            GameManager.Instance.SetBuildOn(true);
         }
         if (Rotate)
         {
-            GameManagerScript.Instance.SetRotate(true);
+            GameManager.Instance.SetRotate(true);
         }
     }
 }

@@ -39,7 +39,7 @@ public class PlaneController : MonoBehaviour {
         valuesY = new float[square];
         StartSquare = transform.position.x - (m_Size.x / 2);
 
-        GameManagerScript.Instance.SetWall(m_Size.x,square);
+        GameManager.Instance.SetWall(m_Size.x,square);
 
         for (int a = 1; a < square; a++)
         {
@@ -63,16 +63,16 @@ public class PlaneController : MonoBehaviour {
 
         //Fetch the size of the Collider volume
         m_Size = m_Collider.bounds.size;
-        planeX = GameManagerScript.Instance.GetPlanePositionX();
-        planeY = GameManagerScript.Instance.GetPlanePositionY();
-        if(GameManagerScript.Instance.GetBuildOn() == true)
+        planeX = GameManager.Instance.GetPlanePositionX();
+        planeY = GameManager.Instance.GetPlanePositionY();
+        if(GameManager.Instance.GetBuildOn() == true)
         {
-            if (GameManagerScript.Instance.GetPlaneOn() == true)
+            if (GameManager.Instance.GetPlaneOn() == true)
             {
                 Build();
             }
         }
-        if (GameManagerScript.Instance.GetPlaneOn() == true)
+        if (GameManager.Instance.GetPlaneOn() == true)
         {
             //Debug.Log("Cuadro(" + pointX + "," + pointY + ")");
             
@@ -130,11 +130,11 @@ public class PlaneController : MonoBehaviour {
     {
         temp = valuesX[pointX - 1] - (valuesX[0] / 2);
         temp2 = valuesY[pointY - 1] - (valuesY[0] / 2);
-        Wall.transform.position = new Vector3(temp, GameManagerScript.Instance.GetWallY(), temp2);
-        if(GameManagerScript.Instance.GetRotate() != Rotate)
+        Wall.transform.position = new Vector3(temp, GameManager.Instance.GetWallY(), temp2);
+        if(GameManager.Instance.GetRotate() != Rotate)
         {
             Wall.transform.Rotate(0,90, 0);
-            GameManagerScript.Instance.SetRotate(false);
+            GameManager.Instance.SetRotate(false);
         }
         Vector2 aux;
         aux = new Vector2((int)temp, (int)temp2);
@@ -146,7 +146,7 @@ public class PlaneController : MonoBehaviour {
             Instantiate(Wall);
         }
         Instantiate(Wall);
-        GameManagerScript.Instance.SetBuildOn(false);
+        GameManager.Instance.SetBuildOn(false);
     }
     
 }

@@ -371,7 +371,7 @@ namespace UnityEngine.AI
             var prefabType = UnityEditor.PrefabUtility.GetPrefabType(this);
             if (prefabType == UnityEditor.PrefabType.Prefab)
                 return false;
-
+            
             // An instance can share asset reference only with its prefab parent
             var prefab = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(this) as NavMeshSurface;
             if (prefab != null && prefab.navMeshData == navMeshData)
