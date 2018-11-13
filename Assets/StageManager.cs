@@ -13,12 +13,8 @@ public class StageManager : MonoBehaviour
     }
 
     [SerializeField] Stage[] stages;
-
     public States currentState;
-
-    Timer timer = new Timer(1.0f);
-
-    private int enemiesSpawned;
+    Timer timer = new Timer(1.0f);    
     private int stage;
     private int id;
    
@@ -67,9 +63,9 @@ public class StageManager : MonoBehaviour
             if (timer.Update(Time.deltaTime))
             {
                 if (stages[stage].enemies[id].Count != 0)
-                {
-                    Instantiate(stages[stage].enemies[id].Prefab, spawnerPosition, Quaternion.identity);
-                    enemiesSpawned++;
+                {                    
+                    EnemyFactory.Instance.CreateEnemy(stages[stage].enemies[id].Prefab, spawnerPosition);
+                 //Instantiate(stages[stage].enemies[id].Prefab, spawnerPosition, Quaternion.identity);                    
                     timer.Reset();
                     timer.Start();
                     stages[stage].enemies[id].Count--;
@@ -85,14 +81,7 @@ public class StageManager : MonoBehaviour
    public void SetCurrentState(States _state)
     {
         currentState = _state;
-    }
-
-    public int ReturnEnemiesSpawned()
-    {
-        return enemiesSpawned;
-    }
-
-   
+    }  
 
 }
 

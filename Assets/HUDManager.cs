@@ -29,7 +29,9 @@ public class HUDManager : MonoBehaviour {
 
     void Update () {
         baseHPText.text = "Base HP: " + baseHP.ToString() ;
-        enemiesRemainingText.text = "Enemies Remaining: " + enemiesRemaining.ToString();
+        enemiesRemainingText.text = "Enemies Remaining: " + enemiesRemaining.ToString(); //sacar esta info del gamemanger
+
+        //Agarre las variable de stagemanage y game manage ry solo las cambie cuando es necesario
 
     }
 

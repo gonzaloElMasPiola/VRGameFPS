@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     public GameObject enemy1;
     public GameObject spawner;    
     public int stageNumber;
-    public int enemiesRemaining;
     public int hP;
     public int baseHP;
 
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
         {
             if (instance == null)
                 instance = FindObjectOfType<GameManager>();
-
             return instance;
         }
     }
@@ -44,7 +42,7 @@ public class GameManager : MonoBehaviour
         Play,
     }
     State currentState;
-
+    
     void Awake()
     {
         instance = this;     
@@ -55,8 +53,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update()
-    {
-
+    {        
         switch (currentState)
         {
             case State.Build:
@@ -72,19 +69,14 @@ public class GameManager : MonoBehaviour
                 GoNextState();
                 break;
             case State.Play:
-                enemiesRemaining = StageManager.instance.ReturnEnemiesSpawned();
-                HUDManager.Instance.GetEnemiesRemaining(enemiesRemaining);
-                if (enemiesRemaining == 0 || Input.GetKeyDown(KeyCode.L))
+                if (Input.GetKeyDown(KeyCode.L))
                 {
                     StartNextStage();
                 }
                 break;
-        }
-        //Debug.Log(currentState);
+        }        
     }
-
-        
-
+    
     public void EnemyHitBase()
     {
         baseHP -= 10;
