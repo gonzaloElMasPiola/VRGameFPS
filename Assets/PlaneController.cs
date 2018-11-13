@@ -24,6 +24,7 @@ public class PlaneController : MonoBehaviour {
     private bool Rotate;
 
     public GameObject Wall;
+    public GameObject Tower;
 
     void Start()
     {
@@ -142,10 +143,17 @@ public class PlaneController : MonoBehaviour {
         {
             Debug.Log("hola");
             grid.Add(aux);
-            Wall.transform.position = new Vector3(temp, 0.3f, temp2);
-            Instantiate(Wall);
-        }
-        Instantiate(Wall);
+            if (GameManager.Instance.GetWatBuild() == "Wall")
+            {
+                Wall.transform.position = new Vector3(temp, 0.3f, temp2);
+                Instantiate(Wall);
+            }
+            else
+            {
+                Tower.transform.position = new Vector3(temp, 0f, temp2);
+                Instantiate(Tower);
+            }
+        }        
         GameManager.Instance.SetBuildOn(false);
     }
     

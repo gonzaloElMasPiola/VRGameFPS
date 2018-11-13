@@ -8,12 +8,12 @@ public class GameManager : MonoBehaviour
 {
     static GameManager instance = null;
     [SerializeField] public int[] gameModes;
-    public int lives;
     public bool Rotate;
     public bool On;
     public bool build;
     public float Wall;
     public float WallY;
+    public string WatBuild = "Wall";
     public Vector3 planePosition;    
     public NavMeshSurface surface;
     public float timer;
@@ -47,8 +47,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
-        lives = 5;
+        instance = this;     
         stageNumber = 0;
         hP = 100;
         baseHP = 100;
@@ -75,17 +74,16 @@ public class GameManager : MonoBehaviour
             case State.Play:
                 enemiesRemaining = StageManager.instance.ReturnEnemiesSpawned();
                 HUDManager.Instance.GetEnemiesRemaining(enemiesRemaining);
-                if (Input.GetKeyDown(KeyCode.L) || enemiesRemaining == 0)
+                if (enemiesRemaining == 0 || Input.GetKeyDown(KeyCode.L))
                 {
                     StartNextStage();
                 }
                 break;
         }
         //Debug.Log(currentState);
-
-        if (lives <= 0)
-            SceneManager.LoadScene("GameOverMenu");
     }
+
+        
 
     public void EnemyHitBase()
     {
@@ -108,12 +106,6 @@ public class GameManager : MonoBehaviour
     void GoNextState()
     {
         currentState += 1;
-    }
-
-    public void LoseLife()
-    {
-        if (lives > 0)
-            lives--;
     }
 
     public void GetPlanePosition(Vector3 _planePosition)
@@ -173,4 +165,15 @@ public class GameManager : MonoBehaviour
     {
         return WallY;
     }
+
+    public void SetWatBuild(string _WatBuild)
+    {
+        WatBuild = _WatBuild;
+    }
+    public string GetWatBuild()
+    {
+        return WatBuild;
+    }
+
+
 }
