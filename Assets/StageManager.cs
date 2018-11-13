@@ -21,7 +21,7 @@ public class StageManager : MonoBehaviour
     private int enemiesSpawned;
     private int stage;
     private int id;
-
+   
     private Vector3 spawnerPosition;    
 
     void Awake()
@@ -46,10 +46,11 @@ public class StageManager : MonoBehaviour
 
             case States.Idle:
                 timer.Reset();
+                id = 0;
                 break;
         }
 
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
     }
 
     public void SpawnEnemies(int _stage, Vector3 _spawnerPosition)
@@ -68,6 +69,7 @@ public class StageManager : MonoBehaviour
                 if (stages[stage].enemies[id].Count != 0)
                 {
                     Instantiate(stages[stage].enemies[id].Prefab, spawnerPosition, Quaternion.identity);
+                    enemiesSpawned++;
                     timer.Reset();
                     timer.Start();
                     stages[stage].enemies[id].Count--;
@@ -77,13 +79,20 @@ public class StageManager : MonoBehaviour
             }
         }
         else
-            SetCurrentState(States.Idle);
+            SetCurrentState(States.Idle);        
     }
 
    public void SetCurrentState(States _state)
     {
         currentState = _state;
     }
+
+    public int ReturnEnemiesSpawned()
+    {
+        return enemiesSpawned;
+    }
+
+   
 
 }
 
