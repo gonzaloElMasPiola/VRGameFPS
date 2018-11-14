@@ -9,9 +9,11 @@ public class BaseManager : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {            
-            Destroy(collision.gameObject);
-            GameManager.Instance.EnemyHitBase();            
+        {
+            EnemyFactory.Instance.DestroyEnemy(collision.gameObject);
+            GameManager.Instance.EnemyHitBase();
+            GameManager.Instance.UpdateEnemiesRemaining();
+            HUDManager.Instance.UpdateEnemiesRemaining(GameManager.Instance.ReturnEnemiesRemaining());
         }
     }
 }

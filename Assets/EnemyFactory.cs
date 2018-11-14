@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFactory : MonoBehaviour {
+public class EnemyFactory : MonoBehaviour
+{
 
-   
+
     static EnemyFactory instance = null;
-    public GameObject[] enemies;
+    public GameObject[] typeOfEnemies;
+    public List<GameObject> enemiesInScene = new List<GameObject>();
     public enum EnemyType
     {
         Melee,
-        Ranged,   
+        Ranged,
     }
-    EnemyType enemyToSpawn;
 
     public static EnemyFactory Instance
     {
@@ -30,18 +31,18 @@ public class EnemyFactory : MonoBehaviour {
         instance = this;
     }
 
-   
-
     public GameObject CreateEnemy(EnemyType _enemyType, Vector3 _spawnPosition)
     {
         GameObject aux;
         switch (_enemyType)
         {
             case EnemyType.Melee:
-                aux = Instantiate(enemies[0], _spawnPosition, Quaternion.identity);                
+                aux = Instantiate(typeOfEnemies[0], _spawnPosition, Quaternion.identity);
+                enemiesInScene.Add(aux);
                 break;
             case EnemyType.Ranged:
-                aux = Instantiate(enemies[1], _spawnPosition, Quaternion.identity);                
+                aux = Instantiate(typeOfEnemies[1], _spawnPosition, Quaternion.identity);
+                enemiesInScene.Add(aux);
                 break;
             default:
                 aux = null;
@@ -50,13 +51,28 @@ public class EnemyFactory : MonoBehaviour {
         }
         return aux;
 
-        
+
     }
 
-   
+    public int AmountOfEnemiesInScene()
+    {
+        return enemiesInScene.Count;
+    }
+
+    public void DestroyEnemy(GameObject enemyToDestroy)
+    {
+        if (enemiesInScene.Contains(enemyToDestroy))
+        {
+            Debug.Log("Taking enemy from factory list");
+            enemiesInScene.Remove(enemyToDestroy);
+            Destroy(enemyToDestroy);
+        }
+    }
 
 
-    //public GameObject Prefab;
-    //Una lista gameobjects enemy que tenga cantidad de enemigos para contruir y destuir
+
+
+
+
 
 }

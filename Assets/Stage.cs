@@ -10,6 +10,6 @@ public class Stage {
 [System.Serializable]
 public class EnemySpawnInfo
 {    
-    public EnemyFactory.EnemyType Prefab; //esto un enum del factory
+    public EnemyFactory.EnemyType Prefab;
     public int Count;    
 }

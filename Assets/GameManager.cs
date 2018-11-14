@@ -14,15 +14,16 @@ public class GameManager : MonoBehaviour
     public float Wall;
     public float WallY;
     public string WatBuild = "Wall";
-    public Vector3 planePosition;    
+    public Vector3 planePosition;
     public NavMeshSurface surface;
     public float timer;
     public float stageDuration;
     public GameObject enemy1;
-    public GameObject spawner;    
+    public GameObject spawner;
     public int stageNumber;
     public int hP;
     public int baseHP;
+    public int enemiesRemaining;
 
 
     public static GameManager Instance
@@ -41,19 +42,21 @@ public class GameManager : MonoBehaviour
         Spawn,
         Play,
     }
-    State currentState;
-    
+    public State currentState;
+
     void Awake()
     {
-        instance = this;     
+        instance = this;
         stageNumber = 0;
         hP = 100;
         baseHP = 100;
-        HUDManager.Instance.GetBaseHP(baseHP);
+        HUDManager.Instance.UpdateBaseHP(baseHP);
+        UpdateEnemiesRemaining();
     }
 
     private void Update()
-    {        
+    {
+        Debug.Log("Enemies in scene: " + EnemyFactory.Instance.AmountOfEnemiesInScene());
         switch (currentState)
         {
             case State.Build:
@@ -69,20 +72,31 @@ public class GameManager : MonoBehaviour
                 GoNextState();
                 break;
             case State.Play:
-                if (Input.GetKeyDown(KeyCode.L))
+                if (enemiesRemaining == 0 || Input.GetKeyDown(KeyCode.L))
                 {
+                    Debug.Log("cambio de stage");
                     StartNextStage();
                 }
                 break;
-        }        
+        }
     }
-    
+
+    public void UpdateEnemiesRemaining()
+    {
+        enemiesRemaining = EnemyFactory.Instance.AmountOfEnemiesInScene();
+    }
+
+    public int ReturnEnemiesRemaining()
+    {
+        return enemiesRemaining;
+    }
+
     public void EnemyHitBase()
     {
         baseHP -= 10;
-        HUDManager.Instance.GetBaseHP(baseHP);
+        HUDManager.Instance.UpdateBaseHP(baseHP);
     }
-   
+
     public void StartNextStage()
     {
         timer = 0.0f;

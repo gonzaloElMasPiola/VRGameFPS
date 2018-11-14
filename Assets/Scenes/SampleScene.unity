@@ -381,8 +381,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHPText: {fileID: 468797491}
   enemiesRemainingText: {fileID: 1018868460}
-  baseHP: 0
-  enemiesRemaining: 0
 --- !u!224 &665838532
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1021,17 +1019,12 @@ MonoBehaviour:
   stages:
   - enemies:
     - Prefab: 0
-      Count: 2
+      Count: 1
+  - enemies:
     - Prefab: 1
-      Count: 2
+      Count: 1
   - enemies:
     - Prefab: 0
-      Count: 2
-    - Prefab: 1
-      Count: 2
-    - Prefab: 0
-      Count: 1
-    - Prefab: 1
       Count: 1
   currentState: 0
 --- !u!4 &1839362041
@@ -1091,6 +1084,8 @@ MonoBehaviour:
   stageNumber: 0
   hP: 0
   baseHP: 0
+  enemiesRemaining: 0
+  currentState: 0
 --- !u!4 &1897315283
 Transform:
   m_ObjectHideFlags: 0
@@ -1143,9 +1138,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e4828f0a036a9d418d100b9984cbdf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
+  typeOfEnemies:
   - {fileID: 1002151509750554, guid: c0bc90088b38e83418306b2571c20b1d, type: 2}
   - {fileID: 1218266988782456, guid: bd92086232848084ab0e561015ce31ab, type: 2}
+  enemiesInScene: []
 --- !u!4 &1991722400
 Transform:
   m_ObjectHideFlags: 0
