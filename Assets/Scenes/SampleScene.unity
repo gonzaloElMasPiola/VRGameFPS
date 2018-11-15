@@ -1023,9 +1023,6 @@ MonoBehaviour:
   - enemies:
     - Prefab: 1
       Count: 1
-  - enemies:
-    - Prefab: 0
-      Count: 1
   currentState: 0
 --- !u!4 &1839362041
 Transform:
@@ -1084,7 +1081,6 @@ MonoBehaviour:
   stageNumber: 0
   hP: 0
   baseHP: 0
-  enemiesRemaining: 0
   currentState: 0
 --- !u!4 &1897315283
 Transform:

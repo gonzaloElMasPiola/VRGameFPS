@@ -14,7 +14,7 @@ public class StageManager : MonoBehaviour
 
     [SerializeField] Stage[] stages;
     public States currentState;
-    Timer timer = new Timer(1.0f);
+    Timer timer = new Timer(0.0f);
     private int stage;
     private int id;
 
@@ -33,7 +33,6 @@ public class StageManager : MonoBehaviour
 
     private void Update()
     {
-
         switch (currentState)
         {
             case States.Spawn:
@@ -45,8 +44,7 @@ public class StageManager : MonoBehaviour
                 timer.Reset();
                 id = 0;
                 break;
-        }
-        //Debug.Log(currentState);        
+        }        
     }
 
     public void SpawnEnemies(int _stage, Vector3 _spawnerPosition)
@@ -59,19 +57,17 @@ public class StageManager : MonoBehaviour
     public void StageSpawn()
     {        
         if (id < stages[stage].enemies.Length)
-        {
+        {            
             if (timer.Update(Time.deltaTime))
             {
                 if (stages[stage].enemies[id].Count != 0)
                 {
                     Debug.Log("entre aca");
-                    EnemyFactory.Instance.CreateEnemy(stages[stage].enemies[id].Prefab, spawnerPosition);                    
-                    //Instantiate(stages[stage].enemies[id].Prefab, spawnerPosition, Quaternion.identity);                    
-                    timer.Reset();
+                    EnemyFactory.Instance.CreateEnemy(stages[stage].enemies[id].Prefab, spawnerPosition);
+                    timer.Reset(1.0f);
                     timer.Start();
-                    stages[stage].enemies[id].Count--;
-                    GameManager.Instance.UpdateEnemiesRemaining();
-                    HUDManager.Instance.UpdateEnemiesRemaining(GameManager.Instance.ReturnEnemiesRemaining());
+                    stages[stage].enemies[id].Count--;                    
+                    HUDManager.Instance.UpdateEnemiesRemaining(EnemyFactory.Instance.AmountOfEnemiesInScene());
                 }
                 else
                     id++;

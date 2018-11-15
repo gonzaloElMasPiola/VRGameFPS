@@ -22,8 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject spawner;
     public int stageNumber;
     public int hP;
-    public int baseHP;
-    public int enemiesRemaining;
+    public int baseHP;    
 
 
     public static GameManager Instance
@@ -50,8 +49,7 @@ public class GameManager : MonoBehaviour
         stageNumber = 0;
         hP = 100;
         baseHP = 100;
-        HUDManager.Instance.UpdateBaseHP(baseHP);
-        UpdateEnemiesRemaining();
+        HUDManager.Instance.UpdateBaseHP(baseHP);        
     }
 
     private void Update()
@@ -72,23 +70,13 @@ public class GameManager : MonoBehaviour
                 GoNextState();
                 break;
             case State.Play:
-                if (enemiesRemaining == 0 || Input.GetKeyDown(KeyCode.L))
+                if (EnemyFactory.Instance.AmountOfEnemiesInScene() == 0 || Input.GetKeyDown(KeyCode.L))
                 {
                     Debug.Log("cambio de stage");
                     StartNextStage();
                 }
                 break;
         }
-    }
-
-    public void UpdateEnemiesRemaining()
-    {
-        enemiesRemaining = EnemyFactory.Instance.AmountOfEnemiesInScene();
-    }
-
-    public int ReturnEnemiesRemaining()
-    {
-        return enemiesRemaining;
     }
 
     public void EnemyHitBase()

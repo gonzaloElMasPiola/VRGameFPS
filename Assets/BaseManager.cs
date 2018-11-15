@@ -11,9 +11,8 @@ public class BaseManager : MonoBehaviour {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             EnemyFactory.Instance.DestroyEnemy(collision.gameObject);
-            GameManager.Instance.EnemyHitBase();
-            GameManager.Instance.UpdateEnemiesRemaining();
-            HUDManager.Instance.UpdateEnemiesRemaining(GameManager.Instance.ReturnEnemiesRemaining());
+            GameManager.Instance.EnemyHitBase();            
+            HUDManager.Instance.UpdateEnemiesRemaining(EnemyFactory.Instance.AmountOfEnemiesInScene());
         }
     }
 }
